@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WA Privacy Blur</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="panel">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">B</div>
+        <div>
+          <h1>WA Privacy Blur</h1>
+          <p>Privacy mode untuk WhatsApp Web</p>
+        </div>
+      </div>
+      <label class="switch">
+        <input id="enabled" type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </header>
+
+    <section class="section">
+      <label class="row">
+        <span>
+          <strong>Blur daftar chat</strong>
+          <small>Nama & preview di sidebar</small>
+        </span>
+        <input id="blurChatList" type="checkbox">
+      </label>
+
+      <label class="row">
+        <span>
+          <strong>Blur isi chat terbuka</strong>
+          <small>Pesan yang sudah tampil di area chat</small>
+        </span>
+        <input id="blurMessages" type="checkbox">
+      </label>
+
+      <label class="row">
+        <span>
+          <strong>Blur box chat / input</strong>
+          <small>Area mengetik pesan di bagian bawah</small>
+        </span>
+        <input id="blurComposer" type="checkbox">
+      </label>
+
+      <label class="row">
+        <span>
+          <strong>Blur nama kontak</strong>
+          <small>Nama kontak/grup di header</small>
+        </span>
+        <input id="blurContactNames" type="checkbox">
+      </label>
+
+      <label class="row">
+        <span>
+          <strong>Blur foto profil</strong>
+          <small>Avatar pada sidebar & header</small>
+        </span>
+        <input id="blurProfilePhotos" type="checkbox">
+      </label>
+
+      <label class="row">
+        <span>
+          <strong>Reveal on hover</strong>
+          <small>Tampilkan saat mouse diarahkan</small>
+        </span>
+        <input id="revealOnHover" type="checkbox">
+      </label>
+    </section>
+
+    <section class="strength">
+      <div class="strength-title">
+        <span>Blur strength</span>
+        <output id="blurValue">8px</output>
+      </div>
+      <input id="blurStrength" type="range" min="2" max="20" value="8" step="1">
+    </section>
+
+    <footer>
+      <span>Alt + Shift + B</span>
+      <span>Toggle cepat</span>
+    </footer>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+:root {
+  --wapb-blur: 8px;
+}
+
+/*
+ * WA Privacy Blur v1.2
+ *
+ * Prinsip:
+ * - Isi percakapan dan composer/input menggunakan selector yang berbeda.
+ * - Hindari memberi CSS filter pada parent DAN child secara bersamaan
+ *   karena filter dapat terlihat seperti blur berlapis.
+ */
+
+/* =========================================================
+   1. DAFTAR CHAT / SIDEBAR
+   ========================================================= */
+html.wapb-enabled.wapb-chat-list #pane-side [role="row"] span[title],
+html.wapb-enabled.wapb-chat-list #pane-side [role="gridcell"] span[title],
+html.wapb-enabled.wapb-chat-list #pane-side [role="row"] [dir="auto"],
+html.wapb-enabled.wapb-chat-list #pane-side [role="gridcell"] [dir="auto"] {
+  filter: blur(var(--wapb-blur)) !important;
+  transition: filter 120ms ease;
+}
+
+
+/* =========================================================
+   2. ISI CHAT YANG SUDAH TERKIRIM / DITERIMA
+   =========================================================
+
+   PENTING:
+   Jangan memakai:
+       #main .selectable-text.copyable-text
+
+   karena class tersebut juga dapat digunakan WhatsApp pada composer.
+   data-pre-plain-text merupakan atribut pada bubble/pesan chat,
+   sehingga area mengetik tidak ikut tertangkap.
+*/
+html.wapb-enabled.wapb-messages #main [data-pre-plain-text] {
+  filter: blur(var(--wapb-blur)) !important;
+  transition: filter 120ms ease;
+}
+
+
+/* =========================================================
+   3. BOX CHAT / COMPOSER
+   =========================================================
+
+   Hanya editor yang dapat diketik pada footer.
+   Filter diberikan SEKALI pada contenteditable, bukan pada semua
+   child-nya, untuk mencegah efek blur ganda.
+*/
+html.wapb-enabled.wapb-composer #main footer [contenteditable="true"] {
+  filter: blur(var(--wapb-blur)) !important;
+  transition: filter 120ms ease;
+}
+
+
+/* =========================================================
+   4. NAMA KONTAK / GRUP PADA HEADER
+   ========================================================= */
+html.wapb-enabled.wapb-contact-names #main header span[title],
+html.wapb-enabled.wapb-contact-names #main header [dir="auto"] {
+  filter: blur(var(--wapb-blur)) !important;
+  transition: filter 120ms ease;
+}
+
+
+/* =========================================================
+   5. FOTO PROFIL
+   ========================================================= */
+html.wapb-enabled.wapb-profile-photos #pane-side img,
+html.wapb-enabled.wapb-profile-photos #main header img {
+  filter: blur(var(--wapb-blur)) !important;
+  transition: filter 120ms ease;
+}
+
+
+/* =========================================================
+   6. REVEAL ON HOVER
+   ========================================================= */
+
+/* Sidebar */
+html.wapb-enabled.wapb-reveal-hover.wapb-chat-list #pane-side [role="row"] span[title]:hover,
+html.wapb-enabled.wapb-reveal-hover.wapb-chat-list #pane-side [role="gridcell"] span[title]:hover,
+html.wapb-enabled.wapb-reveal-hover.wapb-chat-list #pane-side [role="row"] [dir="auto"]:hover,
+html.wapb-enabled.wapb-reveal-hover.wapb-chat-list #pane-side [role="gridcell"] [dir="auto"]:hover {
+  filter: none !important;
+}
+
+/* Bubble pesan */
+html.wapb-enabled.wapb-reveal-hover.wapb-messages #main [data-pre-plain-text]:hover {
+  filter: none !important;
+}
+
+/* Composer */
+html.wapb-enabled.wapb-reveal-hover.wapb-composer #main footer [contenteditable="true"]:hover {
+  filter: none !important;
+}
+
+/* Header contact */
+html.wapb-enabled.wapb-reveal-hover.wapb-contact-names #main header span[title]:hover,
+html.wapb-enabled.wapb-reveal-hover.wapb-contact-names #main header [dir="auto"]:hover {
+  filter: none !important;
+}
+
+/* Avatar */
+html.wapb-enabled.wapb-reveal-hover.wapb-profile-photos #pane-side img:hover,
+html.wapb-enabled.wapb-reveal-hover.wapb-profile-photos #main header img:hover {
+  filter: none !important;
+}
